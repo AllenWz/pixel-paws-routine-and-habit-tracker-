@@ -1,65 +1,130 @@
-/**
- * Below are the colors that are used in the app. The colors are defined in the light and dark mode.
- * There are many other ways to style your app. For example, [Nativewind](https://www.nativewind.dev/), [Tamagui](https://tamagui.dev/), [unistyles](https://unistyl.es/), etc.
- */
+import { Platform } from "react-native";
 
-import '@/global.css';
+export type ThemeMode = "light" | "dark";
 
-import { Platform } from 'react-native';
-
-export const Colors = {
-  light: {
-    text: '#000000',
-    background: '#ffffff',
-    backgroundElement: '#F0F0F3',
-    backgroundSelected: '#E0E1E6',
-    textSecondary: '#60646C',
+export const RetroTheme = {
+  fonts: {
+    family: Platform.select({
+      ios: "Menlo",
+      android: "monospace",
+      default: "monospace",
+    }),
   },
+  borderRadius: {
+    sm: 0,
+    md: 2,
+    lg: 4,
+    full: 9999,
+  },
+  spacing: {
+    xs: 4,
+    sm: 8,
+    md: 12,
+    lg: 16,
+    xl: 24,
+    xxl: 32,
+  },
+};
+
+export const ThemePalettes = {
   dark: {
-    text: '#ffffff',
-    background: '#000000',
-    backgroundElement: '#212225',
-    backgroundSelected: '#2E3135',
-    textSecondary: '#B0B4BA',
+    background: "#090F1E",
+    cardBg: "#141F36",
+    primary: "#42F5C5",
+    secondary: "#4569F5",
+    accent: "#FFD166",
+    text: "#EAF5FF",
+    textLight: "#A4B7D2",
+    border: "#42F5C5",
+    success: "#55D6A4",
+    danger: "#FF6685",
+    lavender: "#A88BFF",
+    blush: "#173D4A",
+    shadow: "#030712",
+    backgroundElement: "#141F36",
+    backgroundSelected: "#234B59",
+    textSecondary: "#A4B7D2",
+    tint: "#42F5C5",
+    icon: "#A4B7D2",
+    tabIconDefault: "#A4B7D2",
+    tabIconSelected: "#42F5C5",
+  },
+  light: {
+    background: "#EAF1FF",
+    cardBg: "#FAFCFF",
+    primary: "#126B67",
+    secondary: "#6E8DF7",
+    accent: "#E8B83E",
+    text: "#17233D",
+    textLight: "#536582",
+    border: "#126B67",
+    success: "#278567",
+    danger: "#C83E5C",
+    lavender: "#7961C9",
+    blush: "#CBEFE8",
+    shadow: "#A2B3D3",
+    backgroundElement: "#FAFCFF",
+    backgroundSelected: "#CBEFE8",
+    textSecondary: "#536582",
+    tint: "#126B67",
+    icon: "#536582",
+    tabIconDefault: "#536582",
+    tabIconSelected: "#126B67",
   },
 } as const;
 
-export type ThemeColor = keyof typeof Colors.light & keyof typeof Colors.dark;
+export type AppThemeColors = (typeof ThemePalettes)[ThemeMode];
+export type ThemeColor = keyof AppThemeColors;
 
-export const Fonts = Platform.select({
-  ios: {
-    /** iOS `UIFontDescriptorSystemDesignDefault` */
-    sans: 'system-ui',
-    /** iOS `UIFontDescriptorSystemDesignSerif` */
-    serif: 'ui-serif',
-    /** iOS `UIFontDescriptorSystemDesignRounded` */
-    rounded: 'ui-rounded',
-    /** iOS `UIFontDescriptorSystemDesignMonospaced` */
-    mono: 'ui-monospace',
+export const Colors = {
+  light: {
+    text: ThemePalettes.light.text,
+    background: ThemePalettes.light.background,
+    tint: ThemePalettes.light.tint,
+    icon: ThemePalettes.light.icon,
+    tabIconDefault: ThemePalettes.light.tabIconDefault,
+    tabIconSelected: ThemePalettes.light.tabIconSelected,
+    backgroundElement: ThemePalettes.light.backgroundElement,
+    backgroundSelected: ThemePalettes.light.backgroundSelected,
+    textSecondary: ThemePalettes.light.textSecondary,
   },
-  default: {
-    sans: 'normal',
-    serif: 'serif',
-    rounded: 'normal',
-    mono: 'monospace',
+  dark: {
+    text: ThemePalettes.dark.text,
+    background: ThemePalettes.dark.background,
+    tint: ThemePalettes.dark.tint,
+    icon: ThemePalettes.dark.icon,
+    tabIconDefault: ThemePalettes.dark.tabIconDefault,
+    tabIconSelected: ThemePalettes.dark.tabIconSelected,
+    backgroundElement: ThemePalettes.dark.backgroundElement,
+    backgroundSelected: ThemePalettes.dark.backgroundSelected,
+    textSecondary: ThemePalettes.dark.textSecondary,
   },
-  web: {
-    sans: 'var(--font-display)',
-    serif: 'var(--font-serif)',
-    rounded: 'var(--font-rounded)',
-    mono: 'var(--font-mono)',
-  },
-});
+};
 
 export const Spacing = {
   half: 2,
   one: 4,
   two: 8,
-  three: 16,
-  four: 24,
-  five: 32,
-  six: 64,
-} as const;
+  three: 12,
+  four: 16,
+  five: 24,
+  six: 32,
+};
 
-export const BottomTabInset = Platform.select({ ios: 50, android: 80 }) ?? 0;
-export const MaxContentWidth = 800;
+export const BottomTabInset = 64;
+export const MaxContentWidth = 560;
+
+export const Fonts = Platform.select({
+  ios: {
+    sans: "Menlo",
+    serif: "Georgia",
+    rounded: "Menlo",
+    mono: "Menlo",
+  },
+  default: {
+    sans: "monospace",
+    serif: "serif",
+    rounded: "monospace",
+    mono: "monospace",
+  },
+});

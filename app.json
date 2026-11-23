@@ -17,7 +17,8 @@
         "backgroundImage": "./assets/images/android-icon-background.png",
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.allenko.HabitRenewalTracker"
     },
     "web": {
       "output": "server",
@@ -37,6 +38,17 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
-    }
+    },
+    "extra": {
+      "router": {
+        "asyncRoutes": {
+          "web": true
+        }
+      },
+      "eas": {
+        "projectId": "bf64de63-dea7-4554-8a37-9ef9a567d67e"
+      }
+    },
+    "owner": "allenko"
   }
 }
